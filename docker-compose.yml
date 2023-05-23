@@ -1,0 +1,36 @@
+version: '3.3'
+services:
+  urlsortener-api:
+    container_name: urlsortener-api
+    build:
+      context: ./
+      dockerfile: local.Dockerfile
+    volumes:
+      - ./:/app
+      - ./.m2:/root/.m2
+    working_dir: /app
+    command: sh run.sh
+    ports:
+      - 8080:8080
+      - 35729:35729
+      - 5005:5005
+    networks:
+      - griddb-net
+    depends_on:
+      - griddbserver
+  griddbserver:
+    container_name: griddbserver
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    volumes:
+      - griddb-vol:/var/lib/gridstore
+    ports:
+      - 10001:10001
+    networks:
+      - griddb-net
+
+networks:
+  griddb-net:
+volumes:
+  griddb-vol:

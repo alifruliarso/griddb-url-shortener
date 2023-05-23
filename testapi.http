@@ -1,0 +1,26 @@
+GET http://localhost:8080/api/urls
+###
+GET http://localhost:8080/api/urls/metrics
+###
+GET http://localhost:8080/api/urls/HgUsO2Cj7d HTTP/1.1
+###
+
+###
+POST http://localhost:8080/api/urls HTTP/1.1
+Content-Type: application/json
+
+{
+    "url": "https://griddb.net/en/blog/time-series-database-benchmark-comparison-griddb-questdb-timescaledb/"
+}
+###
+###
+POST http://localhost:8080/api/urls HTTP/1.1
+Content-Type: application/json
+
+{
+    "url":"https://www.toptal.com/python/in-depth-python-logging"
+}
+###
+GET http://localhost:8080/api/urls/HjlQjET
+###
+GET http://localhost:8080/api/urls/Gxx
