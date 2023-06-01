@@ -9,7 +9,10 @@ services:
       - ./:/app
       - ./.m2:/root/.m2
     environment:
-      - GRIDDB_HOST=mygriddbserver
+      - GRIDDB_NOTIFICATION_MEMBER=mygriddbserver:10001
+      - GRIDDB_CLUSTER_NAME=dockerGridDB
+      - GRIDDB_USER=admin
+      - GRIDDB_PASSWORD=admin
     working_dir: /app
     command: sh run.sh
     ports:

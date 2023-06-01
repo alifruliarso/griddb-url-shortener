@@ -6,7 +6,10 @@ services:
       context: ./
       dockerfile: app.Dockerfile
     environment:
-      - GRIDDB_HOST=griddb01
+      - GRIDDB_NOTIFICATION_MEMBER=griddb01:10001
+      - GRIDDB_CLUSTER_NAME=dockerGridDB
+      - GRIDDB_USER=admin
+      - GRIDDB_PASSWORD=admin
     volumes:
       - ./:/app
       - ./.m2:/root/.m2
