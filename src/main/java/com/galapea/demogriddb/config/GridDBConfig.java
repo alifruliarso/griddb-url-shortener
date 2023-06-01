@@ -1,6 +1,7 @@
 package com.galapea.demogriddb.config;
 
 import java.util.Properties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import com.galapea.demogriddb.model.UrlMetricModel;
@@ -14,11 +15,14 @@ import com.toshiba.mwcloud.gs.TimeSeries;
 @Configuration
 public class GridDBConfig {
 
+    @Value("${GRIDDB_HOST}")
+    private String griddbHost;
+
     @Bean
     public GridStore gridStore() throws GSException {
         // Acquiring a GridStore instance
         Properties properties = new Properties();
-        properties.setProperty("notificationMember", "griddbserver:10001");
+        properties.setProperty("notificationMember", griddbHost + ":10001");
         properties.setProperty("clusterName", "dockerGridDB");
         properties.setProperty("user", "admin");
         properties.setProperty("password", "admin");

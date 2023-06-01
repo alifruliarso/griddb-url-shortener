@@ -1,0 +1,38 @@
+version: '3.3'
+services:
+  myurlsortener-api:
+    container_name: myurlsortener-api
+    build:
+      context: ./
+      dockerfile: local.Dockerfile
+    volumes:
+      - ./:/app
+      - ./.m2:/root/.m2
+    environment:
+      - GRIDDB_HOST=mygriddbserver
+    working_dir: /app
+    command: sh run.sh
+    ports:
+      - 8080:8080
+      - 35729:35729
+      - 5005:5005
+    networks:
+      - mygriddb-net
+    depends_on:
+      - mygriddbserver
+  mygriddbserver:
+    container_name: mygriddbserver
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    volumes:
+      - mygriddb-vol:/var/lib/gridstore
+    ports:
+      - 10001:10001
+    networks:
+      - mygriddb-net
+
+networks:
+  mygriddb-net:
+volumes:
+  mygriddb-vol:
