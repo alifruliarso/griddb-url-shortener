@@ -22,6 +22,10 @@ import com.galapea.demogriddb.model.UrlModel;
 import com.galapea.demogriddb.model.UrlPayload;
 import com.galapea.demogriddb.service.UrlService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
+
+@Tag(name = "URLShortener API", description = "URLShortener APIs documentation")
 @RestController
 @RequestMapping("/api/urls")
 public class UrlController {
@@ -33,6 +37,7 @@ public class UrlController {
         this.urlService = urlService;
     }
 
+    @Operation(summary = "Get all ULRs")
     @GetMapping()
     public ResponseEntity<?> getAll() {
         Map<String, Object> map = new LinkedHashMap<String, Object>();
@@ -49,9 +54,11 @@ public class UrlController {
         }
     }
 
+    @Operation(summary = "Get original ULR by short URL")
     @GetMapping("/{url}")
     public ResponseEntity<ShortUrlResponse> getOriginalUrl(
-            @RequestHeader(value = "User-Agent") String userAgent,
+            @RequestHeader(value = "User-Agent", required = false,
+                    defaultValue = "Swagger-UI") String userAgent,
             @PathVariable("url") String shortUrl) throws NotFoundException {
         LOGGER.info("Received shortened url to redirect: " + shortUrl);
         var response = urlService.findOriginalUrl(shortUrl);
@@ -60,6 +67,7 @@ public class UrlController {
         return ResponseEntity.ok().body(response);
     }
 
+    @Operation(summary = "Create a short ULR")
     @PostMapping()
     public ResponseEntity<ShortUrlResponse> create(@RequestBody UrlPayload model) {
         LOGGER.info("Received url to shorten: " + model.getUrl());
@@ -67,6 +75,7 @@ public class UrlController {
         return ResponseEntity.ok().body(response);
     }
 
+    @Operation(summary = "Get metrics")
     @GetMapping(value = "/metrics")
     public ResponseEntity<?> getMetrics() {
         Map<String, Object> map = new LinkedHashMap<String, Object>();
