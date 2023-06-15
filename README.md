@@ -36,7 +36,7 @@ Swagger-UI available at http://localhost:8080/swagger-ui/index.html
 
 #### Postman
 <div align="left">
-    <img width="70%" src="https://raw.githubusercontent.com/alifruliarso/griddb-url-shortener/main/screenshoot/Create-shortURL.png" alt="Create short URL" title="Create short URL"</img>
+    <img src="https://raw.githubusercontent.com/alifruliarso/griddb-url-shortener/main/screenshoot/Create-shortURL.png" alt="Create short URL" title="Create short URL"</img>
 </div>
 
 #### cURL
@@ -55,7 +55,7 @@ Swagger-UI available at http://localhost:8080/swagger-ui/index.html
 
 #### Postman
 <div align="left">
-    <img width="70%" src="https://raw.githubusercontent.com/alifruliarso/griddb-url-shortener/main/screenshoot/Get-originalURL.png" alt="Get original URL" title="Get original URL"</img>
+    <img src="https://raw.githubusercontent.com/alifruliarso/griddb-url-shortener/main/screenshoot/Get-originalURL.png" alt="Get original URL" title="Get original URL"</img>
 </div>
 
 #### cURL
